@@ -34,10 +34,7 @@ INSERT INTO transactions (amount, date, merchant_id) VALUES (5.50, '2021-09-14',
 INSERT INTO transactions (amount, date, merchant_id) VALUES (14.99, '2021-09-14', 2);
 INSERT INTO transactions (amount, date, merchant_id) VALUES (34.50, '2021-09-14', 3);
 
-SELECT merchants.name, transactions.amount, transactions.date
-FROM merchants
-INNER JOIN transactions 
-ON merchants.id = transactions.merchant_id;
+
 
 
 
