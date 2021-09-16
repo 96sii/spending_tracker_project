@@ -27,3 +27,11 @@ def select(id):
         merchant = Merchant(result['name'], category, result['id'])
         return merchant
 
+def save(merchant):
+    sql = "INSERT INTO merchants (name, category_id) VALUES (%s, %s) RETURNING *"
+    values = [merchant.name, merchant.category.id]
+    results = run_sql(sql, values)
+    id = results[0]['id']
+    merchant.id = id
+    return merchant
+

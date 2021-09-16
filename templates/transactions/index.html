@@ -12,7 +12,7 @@
                 {% for transaction in transactions %}
                 <tr>
                         <td id="td-1">{{ transaction.merchant.name }}</td>
-                        <td id="td-2">{{ transaction.amount }}</td>
+                        <td id="td-2">£{{ transaction.amount }}</td>
                         <td id="td-3">{{ transaction.date }}</td>
                 <tr>
                     {% endfor %}

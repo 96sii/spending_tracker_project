@@ -43,3 +43,16 @@ def select(id):
         merchant = merchant_repository.select(result['merchant_id'])
         transaction = Transaction(result['amount'], result['date'], merchant, result['id'])
         return transaction
+
+def delete(id):
+    sql = "DELETE  FROM transactions WHERE id = %s"
+    values = [id]
+    run_sql(sql, values)
+
+def save(transaction):
+    sql = "INSERT INTO transactions (amount, date, merchant_id) VALUES (%s, %s, %s) RETURNING *"
+    values = [transaction.amount, transaction.date, transaction.merchant.id] 
+    results = run_sql(sql, values)
+    id = results[0]['id']
+    transaction.id = id
+    return transaction
