@@ -16,6 +16,23 @@ def select_all():
 
     return transactions
 
+def add_total():
+    transactions = []
+    total = 0
+
+    sql = "SELECT * FROM transactions"
+    results = run_sql(sql)
+
+    for row in results:
+        merchant = merchant_repository.select(row["merchant_id"])
+        transaction = Transaction(row['amount'], row['date'], merchant, row['id'])
+        transactions.append(transaction)
+
+    for transaction in transactions:
+        total += transaction.amount
+
+    return total
+
 def select(id):
     transaction = None
     sql = "SELECT * FROM transactions WHERE ID = %s"

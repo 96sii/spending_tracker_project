@@ -1,4 +1,25 @@
 .transaction-container {
-    display: flex;
-    justify-content: space-between;
+
 }
+
+.transactions-total {
+    
+}
+
+table {
+    width: 50%;
+    margin: 0 auto;
+}
+
+table {
+    border: 1px solid black;
+}
+
+td {
+    width: 33%;
+}
+
+#td-1, #td-3 {
+    background-color: rgb(218, 218, 218);
+}
+

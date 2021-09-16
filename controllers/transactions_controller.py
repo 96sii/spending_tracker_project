@@ -12,4 +12,5 @@ transactions_blueprint = Blueprint("transactions", __name__)
 def transactions():
     transactions = transaction_repository.select_all()
     merchants = merchant_repository.select_all()
-    return render_template("/transactions/index.html", transactions=transactions, merchants= merchants)
+    total = transaction_repository.add_total()
+    return render_template("/transactions/index.html", transactions=transactions, merchants= merchants, total=total)
