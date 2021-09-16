@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>New transaction</h1>
+
+    <form class="new-form" action="/transactions" methods="POST">
+        <input type="text" id="merchant-input" name="merchant" placeholder="Merchant" required>
+        <select name="category" id="category-input">
+            {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.category }}</option>
+            {% endfor %}
+        </select>
+        <input type="float" id="amount-input" name="amount" placeholder="Amount" required>
+        <input type="date" id="date-input" name="date" placeholder="Date" required>
+
+    </form>
+{% endblock content %}
