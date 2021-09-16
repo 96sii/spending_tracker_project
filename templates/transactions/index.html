@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Spending history</h1>
+
+    {% for transaction in transactions %}
+        <div class="transaction-container">
+            {{ transaction.amount }}
+        </div>
+    {% endfor %}
+{% endblock content %}

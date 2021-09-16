@@ -8,7 +8,7 @@ def select_all():
     results = run_sql(sql)
 
     for row in results:
-        category = Category(row['category'])
+        category = Category(row['category'], row['id'])
         categories.append(category)
     
     return categories

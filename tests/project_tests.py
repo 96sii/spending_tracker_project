@@ -16,4 +16,6 @@ class TestProject(unittest.TestCase):
         self.assertEqual('Groceries', self.category.category)
 
     def test_transaction(self):
-        self. assertEqual('2021-09-14', self.transaction.date)
+        self.assertEqual('2021-09-14', self.transaction.date)
+
+

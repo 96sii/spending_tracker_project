@@ -5,3 +5,4 @@ from flask import Blueprint
 
 
 merchants_blueprint = Blueprint("merchants", __name__)
+

@@ -1,5 +1,5 @@
 class Merchant:
-    def __init__(self, merchant_name, category, id=None):
-        self.name = merchant_name
+    def __init__(self, name, category, id=None):
+        self.name = name
         self.category = category
         self.id=id

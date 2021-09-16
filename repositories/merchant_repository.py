@@ -10,7 +10,8 @@ def select_all():
     results = run_sql(sql)
 
     for row in results:
-        merchant = Merchant(row['name'], row['category'], row['id'])
+        category = category_repository.select(row['category_id'])
+        merchant = Merchant(row['name'], category, row['id'])
         merchants.append(merchant)
 
     return merchants
@@ -25,3 +26,4 @@ def select(id):
         category = category_repository.select(result['category_id'])
         merchant = Merchant(result['name'], category, result['id'])
         return merchant
+
