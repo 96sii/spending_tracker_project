@@ -4,3 +4,4 @@ class Transaction:
         self.date = date
         self.merchant = merchant
         self.id = id
+
