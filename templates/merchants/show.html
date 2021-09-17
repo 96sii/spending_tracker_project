@@ -3,9 +3,16 @@
     <h1>{{ merchant.name }}</h1>
     <hr>
     <h2>{{ merchant.category.category }}</h2>
-
-    {% for transaction in transactions %}
-        {{ transaction.amount }} {{ transaction.date }}
-    {% endfor %}
+    <table>
+        
+            {% for transaction in transactions %}
+            <tr>
+                <td>£{{ transaction.amount }}</td> 
     
+                <td>{{ transaction.date }}</td>
+            </tr>
+                {% endfor %}
+        
+</table>
+
 {% endblock content %}

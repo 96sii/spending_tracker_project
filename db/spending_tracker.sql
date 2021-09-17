@@ -42,19 +42,23 @@ INSERT INTO merchants (name, category_id) VALUES ('Wagamamas', 3);
 
 INSERT INTO transactions (amount, date, merchant_id) VALUES (5.50, '2021-09-14', 1);
 INSERT INTO transactions (amount, date, merchant_id) VALUES (7.50, '2021-09-14', 1);
-INSERT INTO transactions (amount, date, merchant_id) VALUES (14.99, '2021-09-14', 2);
-INSERT INTO transactions (amount, date, merchant_id) VALUES (34.50, '2021-09-14', 3);
+INSERT INTO transactions (amount, date, merchant_id) VALUES (14.99, '2021-09-13', 2);
+INSERT INTO transactions (amount, date, merchant_id) VALUES (34.50, '2021-09-12', 3);
 
 
-SELECT * FROM merchants;
-SELECT * FROM categories;
-SELECT * FROM transactions;
+-- SELECT * FROM merchants;
+-- SELECT * FROM categories;
+-- SELECT * FROM transactions;
+
+-- SELECT *
+-- FROM transactions
+-- INNER JOIN merchants
+-- ON transactions.merchant_id = merchants.id
+-- WHERE merchants.id = 1;
 
 SELECT *
 FROM transactions
-INNER JOIN merchants
-ON transactions.merchant_id = merchants.id
-WHERE merchants.id = 1;
+WHERE transactions.date = '2021-09-14';
 
 
 

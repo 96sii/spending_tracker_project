@@ -7,6 +7,3 @@ from models.category import Category
 
 
 
-
-
-print(transaction_repository.select_all_from_merchant(1))

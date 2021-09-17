@@ -18,6 +18,7 @@ def select_all():
 
     return transactions
 
+# select all by merchant
 def select_all_from_merchant(id):
     transactions = []
 
@@ -32,8 +33,7 @@ def select_all_from_merchant(id):
 
     return transactions
 
-
-
+# add total transactions
 def add_total():
     transactions = []
     total = 0
@@ -51,6 +51,13 @@ def add_total():
         round_total = "{:.2f}".format(total)
     return round_total
 
+def budget(total, budget):
+    if budget > total: 
+        return f"You have {budget - total} left to spend"
+    else: 
+        return f"You have gone over your budget by {total - budget}"
+
+#select by id
 def select(id):
     transaction = None
     sql = "SELECT * FROM transactions WHERE ID = %s"
@@ -61,6 +68,7 @@ def select(id):
         merchant = merchant_repository.select(result['merchant_id'])
         transaction = Transaction(result['amount'], result['date'], merchant, result['id'])
         return transaction
+
 
 def delete(id):
     sql = "DELETE  FROM transactions WHERE id = %s"
