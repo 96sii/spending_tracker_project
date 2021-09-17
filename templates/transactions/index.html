@@ -5,9 +5,15 @@
     <div class="transaction-container">
         
             <table class="transaction-table">
+                {% if budget.amount > total %}
+                <h2 id="under-budget">You are £{{budget.amount - total }} within budget</h2> 
+                {% else %}
+                <h2 id="over-budget">You are £{{ total - budget.amount }} over your budget</h2>
+                {% endif %}
+                
                 <tr>
                     <td></td>
-                    <td>{{ total }}</td>
+                    <td>£{{ total }}</td>
                 </tr>
                 {% for transaction in transactions %}
                 <tr>

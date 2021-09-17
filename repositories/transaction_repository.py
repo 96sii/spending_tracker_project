@@ -48,14 +48,9 @@ def add_total():
 
     for transaction in transactions:
         total += transaction.amount
-        round_total = "{:.2f}".format(total)
-    return round_total
+        
+    return total
 
-def budget(total, budget):
-    if budget > total: 
-        return f"You have {budget - total} left to spend"
-    else: 
-        return f"You have gone over your budget by {total - budget}"
 
 #select by id
 def select(id):
