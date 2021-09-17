@@ -23,6 +23,11 @@ def create_merchant():
     merchant_name = request.form['merchant_name']
     category_id = request.form['category_id']
     category = category_repository.select(category_id)
-    merchant = Merchant(merchant_name, category)
-    merchant_repository.save(merchant)
-    return redirect("/merchants")
+    merchants = merchant_repository.select_all()
+    for merchant in merchants:
+        if merchant_name == merchant.name:
+            return redirect("/merchants")
+        else:
+            merchant = Merchant(merchant_name, category)
+            merchant_repository.save(merchant)
+            return redirect("/merchants")
