@@ -12,3 +12,4 @@ categories_blueprint = Blueprint("categories", __name__)
 def categories():
     categories = category_repository.select_all()
     return render_template("/categories/index.html", categories=categories)
+

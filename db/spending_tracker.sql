@@ -21,10 +21,20 @@ CREATE TABLE transactions (
     merchant_id INT references merchants(id)
 );
 
-INSERT INTO categories (category) VALUES ('Groceries');
-INSERT INTO categories (category) VALUES ('Entertainment');
+INSERT INTO categories (category) VALUES ('Bills');
+INSERT INTO categories (category) VALUES ('Charity');
 INSERT INTO categories (category) VALUES ('Dining out');
+INSERT INTO categories (category) VALUES ('Entertainment');
+INSERT INTO categories (category) VALUES ('Expenses');
+INSERT INTO categories (category) VALUES ('Family');
+INSERT INTO categories (category) VALUES ('Finances');
+INSERT INTO categories (category) VALUES ('Gifts');
+INSERT INTO categories (category) VALUES ('Groceries');
+INSERT INTO categories (category) VALUES ('Holidays');
 INSERT INTO categories (category) VALUES ('Miscellaneous');
+INSERT INTO categories (category) VALUES ('Personal Care');
+INSERT INTO categories (category) VALUES ('Shopping');
+INSERT INTO categories (category) VALUES ('Transport');
 
 INSERT INTO merchants (name, category_id) VALUES ('Tesco', 1);
 INSERT INTO merchants (name, category_id) VALUES ('Netflix', 2);

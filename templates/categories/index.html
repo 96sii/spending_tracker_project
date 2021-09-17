@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-    {% for category in categories %}
-        {{ category.category }}
-    {% endfor %}
+    <div class="category-content">
+        {% for category in categories %}
+            <div class="category-block">
+        <a href="">{{ category.category }}</a>
+            </div>
+
+        {% endfor %}
+    </div>
 {% endblock content %}

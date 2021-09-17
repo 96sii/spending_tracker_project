@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form action="/merchants" method="post">
+        <input type="text" name="merchant_name" placeholder="Merchant name" required autofocus>
+        <select name="category_id" id="category-select">
+            {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.category }}</option> 
+            {% endfor %}
+        </select>
+        <input type="submit">
+    
+    </form>
+{% endblock content %}
