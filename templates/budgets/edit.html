@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form action="/budgets/{{ budget.id }}" method="post">
+        <input name="budget" type="number" placeholder="Amount" required autofocus>
+        <input type="submit">
+    </form>
+{% endblock content %}

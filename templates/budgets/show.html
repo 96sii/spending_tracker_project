@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>{{ budget.amount }}</h1>
+    <a href="/budgets/{{ budget.id }}/edit">edit</a>
+{% endblock content %}

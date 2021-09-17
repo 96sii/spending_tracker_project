@@ -2,9 +2,11 @@ from flask import Flask, render_template, request, redirect
 from flask import Blueprint
 from models.merchant import Merchant
 from models.transaction import Transaction
+from models.budget import Budget
 import repositories.transaction_repository as transaction_repository
 import repositories.merchant_repository as merchant_repository
 import repositories.category_repository as category_repository
+import repositories.budget_repository as budget_repository
 
 
 
@@ -14,12 +16,24 @@ budgets_blueprint = Blueprint("budgets", __name__)
 
 @budgets_blueprint.route("/budgets")
 def budgets():
-    return render_template("budgets/index.html")
+    budgets = budget_repository.select_all()
+    return render_template("budgets/index.html", budgets=budgets)
 
-@budgets_blueprint.route("/budget/new", methods=['GET'])
-def budget():
-    return render_template("transactions/budget.html")
+@budgets_blueprint.route("/budgets/<id>", methods=['GET'])
+def show_budget(id):
+    budget = budget_repository.select(id)
+    return render_template("budgets/show.html", budget=budget)
 
-@budgets_blueprint.route("/budget", methods=['POST'])
-def create_budget():
-    budget = request.form['budget']
+
+@budgets_blueprint.route("/budgets/<id>/edit", methods=['GET'])
+def edit_budget(id):
+    budget = budget_repository.select(id)
+    return render_template("/budgets/edit.html", budget=budget)
+
+
+@budgets_blueprint.route("/budgets/<id>", methods=['POST'])
+def update_budget(id):
+    budget_amount = request.form['budget']
+    budget_1 = Budget(budget_amount, id)
+    budget_repository.update(budget_1)
+    return redirect('/budgets')

@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS budgets;
 DROP TABLE IF EXISTS transactions;
 DROP TABLE IF EXISTS merchants;
 DROP TABLE IF EXISTS categories;
@@ -6,6 +7,11 @@ DROP TABLE IF EXISTS categories;
 CREATE TABLE categories (
     id SERIAL PRIMARY KEY,
     category VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE budgets (
+    id SERIAL PRIMARY KEY,
+    amount FLOAT NOT NULL
 );
 
 CREATE TABLE merchants (
@@ -36,6 +42,11 @@ INSERT INTO categories (category) VALUES ('Personal Care');
 INSERT INTO categories (category) VALUES ('Shopping');
 INSERT INTO categories (category) VALUES ('Transport');
 
+INSERT INTO budgets (amount) VALUES (1400.00);
+
+
+
+
 INSERT INTO merchants (name, category_id) VALUES ('Tesco', 9);
 INSERT INTO merchants (name, category_id) VALUES ('Netflix', 4);
 INSERT INTO merchants (name, category_id) VALUES ('Wagamamas', 3);
@@ -56,9 +67,11 @@ INSERT INTO transactions (amount, date, merchant_id) VALUES (34.50, '2021-09-12'
 -- ON transactions.merchant_id = merchants.id
 -- WHERE merchants.id = 1;
 
-SELECT *
-FROM transactions
-WHERE transactions.date = '2021-09-14';
+-- SELECT *
+-- FROM transactions
+-- WHERE transactions.date = '2021-09-14';
+
+SELECT * FROM budgets;
 
 
 

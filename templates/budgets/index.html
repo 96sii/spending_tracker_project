@@ -1,4 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-    
+    <h1>Budget</h1>
+
+    {% for budget in budgets %}
+    <div class="budget">
+        <a href="/budgets/{{ budget.id }}">{{ budget.amount }}</a>
+    </div>
+    {% endfor %}
 {% endblock content %}
