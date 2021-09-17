@@ -35,13 +35,7 @@ def save(merchant):
     merchant.id = id
     return merchant
 
-def merchant_equals_input(merchants, merchant_name, category):
-    for merchant in merchants:
-        if merchant_name != merchant.name:
-            merchant = Merchant(merchant_name, category) 
-        else:
-            pass
-    return merchant
+
 
 
             

@@ -32,8 +32,8 @@ def add_total():
 
     for transaction in transactions:
         total += transaction.amount
-
-    return total
+        round_total = "{:.2f}".format(total)
+    return round_total
 
 def select(id):
     transaction = None

@@ -23,6 +23,7 @@ def create_merchant():
     merchant_name = request.form['merchant_name']
     category_id = request.form['category_id']
     category = category_repository.select(category_id)
+    
     merchants = merchant_repository.select_all()
     for merchant in merchants:
         if merchant_name == merchant.name:

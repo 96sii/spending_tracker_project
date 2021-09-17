@@ -14,3 +14,4 @@ merchant_repository.save(merchant)
 
 transaction_repository.save(transaction)
 
+print(transaction_repository.select_all())

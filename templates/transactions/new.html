@@ -4,17 +4,15 @@
 
 <form class="new" action="/transactions" method="post">
     <div>
-        <input type="text" id="merchant-input" name="merchant" placeholder="Merchant" required autofocus>
-    </div>  
-    <div>
-        <select name="category_id" id="category-input">
-            {% for category in categories %}
-                <option value="{{ category.id }}">{{ category.category }}</option>
+        <select name="merchant_id" id="merchant-input">
+            {% for merchant in merchants %}
+            <option value="{{ merchant.id }}">{{ merchant.name }}</option>
             {% endfor %}
         </select>
     </div>  
     <div>
-        <input type="float" id="amount-input" name="amount" placeholder="Amount" required>
+        
+        <input type="float" id="amount-input" name="amount" placeholder="£" step=".01" required >
     </div>
     <div>
         <input type="text" id="date-input" name="date" placeholder="Date" required>
