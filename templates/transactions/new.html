@@ -2,7 +2,7 @@
 {% block content %}
 <h1>New transaction</h1>
 
-<form class="new" action="/transactions" methods="post">
+<form class="new" action="/transactions" method="post">
     <div>
         <input type="text" id="merchant-input" name="merchant" placeholder="Merchant" required autofocus>
     </div>  
@@ -17,7 +17,7 @@
         <input type="float" id="amount-input" name="amount" placeholder="Amount" required>
     </div>
     <div>
-        <input type="date" id="date-input" name="date" placeholder="Date" required>
+        <input type="text" id="date-input" name="date" placeholder="Date" required>
     </div>
     <div>
         <input type="submit">  

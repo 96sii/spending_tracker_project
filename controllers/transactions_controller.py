@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect
 from flask import Blueprint
 from models.merchant import Merchant
 from models.transaction import Transaction
-import repositories.transaction_repositories as transaction_repository
+import repositories.transaction_repository as transaction_repository
 import repositories.merchant_repository as merchant_repository
 import repositories.category_repository as category_repository
 
@@ -23,22 +23,19 @@ def new_transaction():
     merchants = merchant_repository.select_all()
     return render_template("transactions/new.html", categories=categories, merchants=merchants)
 
-@transactions_blueprint.route("/transactions", methods=['POST'])
-def add_transaction():
-    merchant_name = request.form['merchant']
-    category_id = request.form['category_id']
-    amount = request.form['amount']
-    date = request.form['date']
+# @transactions_blueprint.route("/transactions", methods=['POST'])
+# def add_transaction():
+#     merchant_name = request.form['merchant']
+#     category_id = request.form['category_id']
+#     amount = request.form['amount']
+#     date = request.form['date']
     
-    merchants = merchant_repository.select_all()
-    for merchant in merchants:
-        if merchant.name == merchant_name:
-            return merchant
-        else:
-            merchant = Merchant(merchant_name, category_id)
+#     category = category_repository.select(category_id)
+#     merchant = Merchant(merchant_name, category)
+#     merchant_repository.save(merchant)
 
-    transaction = Transaction(amount, date, merchant)
-    transaction_repository.save(transaction)
-    return redirect ("/transactions")
+#     transaction = Transaction(amount, date, merchant)
+#     transaction_repository.save(transaction)
+#     return redirect ("/transactions")
 
     

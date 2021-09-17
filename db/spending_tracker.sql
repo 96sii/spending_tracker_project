@@ -35,7 +35,9 @@ INSERT INTO transactions (amount, date, merchant_id) VALUES (14.99, '2021-09-14'
 INSERT INTO transactions (amount, date, merchant_id) VALUES (34.50, '2021-09-14', 3);
 
 
-
+SELECT * FROM merchants;
+SELECT * FROM categories;
+SELECT * FROM transactions;
 
 
 

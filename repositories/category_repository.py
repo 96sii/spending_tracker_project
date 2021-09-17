@@ -22,3 +22,11 @@ def select(id):
     if result is not None:
         category = Category(result['category'], result['id'])
         return category
+
+def save(category):
+    sql = "INSERT INTO categories (category) VALUES (%s) RETURNING *"
+    values = [category.category]
+    results = run_sql(sql, values)
+    id = results[0]['id']
+    category.id = id
+    return category
