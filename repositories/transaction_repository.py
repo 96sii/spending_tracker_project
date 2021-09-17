@@ -18,6 +18,22 @@ def select_all():
 
     return transactions
 
+def select_all_from_merchant(id):
+    transactions = []
+
+    sql = "SELECT * FROM transactions INNER JOIN merchants ON transactions.merchant_id = %s WHERE merchants.id = %s"
+    values = [id, id]
+    results = run_sql(sql, values)
+
+    for row in results:
+        merchant = merchant_repository.select(id)
+        transaction = Transaction(row['amount'], row['date'], merchant, row['id'])
+        transactions.append(transaction)
+
+    return transactions
+
+
+
 def add_total():
     transactions = []
     total = 0
@@ -58,4 +74,6 @@ def save(transaction):
     id = results[0]['id']
     transaction.id = id
     return transaction
+
+
 

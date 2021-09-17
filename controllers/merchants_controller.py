@@ -3,6 +3,7 @@ from flask import Blueprint
 from models.merchant import Merchant
 import repositories.merchant_repository as merchant_repository
 import repositories.category_repository as category_repository
+import repositories.transaction_repository as transaction_repository
 
 
 
@@ -13,17 +14,21 @@ def merchants():
     merchants = merchant_repository.select_all()
     return render_template("/merchants/index.html", merchants=merchants)
 
+
+
 @merchants_blueprint.route("/merchants/new", methods=['GET'])
 def new_merchant():
     categories = category_repository.select_all()
     return render_template("merchants/new.html", categories=categories)
+
+
 
 @merchants_blueprint.route("/merchants", methods=['POST'])
 def create_merchant():
     merchant_name = request.form['merchant_name']
     category_id = request.form['category_id']
     category = category_repository.select(category_id)
-    
+
     merchants = merchant_repository.select_all()
     for merchant in merchants:
         if merchant_name == merchant.name:
@@ -32,3 +37,11 @@ def create_merchant():
             merchant = Merchant(merchant_name, category)
             merchant_repository.save(merchant)
             return redirect("/merchants")
+
+
+
+@merchants_blueprint.route("/merchants/<id>", methods=['GET'])
+def show_merchant(id):
+    merchant = merchant_repository.select(id)
+    transactions = transaction_repository.select_all_from_merchant(id)
+    return render_template("merchants/show.html", merchant=merchant, transactions=transactions)

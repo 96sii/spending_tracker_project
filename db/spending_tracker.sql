@@ -36,11 +36,12 @@ INSERT INTO categories (category) VALUES ('Personal Care');
 INSERT INTO categories (category) VALUES ('Shopping');
 INSERT INTO categories (category) VALUES ('Transport');
 
-INSERT INTO merchants (name, category_id) VALUES ('Tesco', 1);
-INSERT INTO merchants (name, category_id) VALUES ('Netflix', 2);
+INSERT INTO merchants (name, category_id) VALUES ('Tesco', 9);
+INSERT INTO merchants (name, category_id) VALUES ('Netflix', 4);
 INSERT INTO merchants (name, category_id) VALUES ('Wagamamas', 3);
 
 INSERT INTO transactions (amount, date, merchant_id) VALUES (5.50, '2021-09-14', 1);
+INSERT INTO transactions (amount, date, merchant_id) VALUES (7.50, '2021-09-14', 1);
 INSERT INTO transactions (amount, date, merchant_id) VALUES (14.99, '2021-09-14', 2);
 INSERT INTO transactions (amount, date, merchant_id) VALUES (34.50, '2021-09-14', 3);
 
@@ -48,6 +49,12 @@ INSERT INTO transactions (amount, date, merchant_id) VALUES (34.50, '2021-09-14'
 SELECT * FROM merchants;
 SELECT * FROM categories;
 SELECT * FROM transactions;
+
+SELECT *
+FROM transactions
+INNER JOIN merchants
+ON transactions.merchant_id = merchants.id
+WHERE merchants.id = 1;
 
 
 
