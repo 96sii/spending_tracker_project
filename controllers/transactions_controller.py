@@ -51,10 +51,7 @@ def add_transaction():
             return redirect("/transactions")
         
 
-
-    
-    
-
-
-
-    
+@transactions_blueprint.route("/transactions/<id>/delete", methods=["POST"])
+def delete(id):
+    transaction_repository.delete(id)   
+    return redirect("/transactions")

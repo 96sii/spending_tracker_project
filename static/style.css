@@ -2,6 +2,18 @@ body {
     font-family: 'Oswald', sans-serif;
 }
 
+.menu {
+    display: flex;
+    list-style: none;
+}
+
+.menu-item {
+    padding: 0 10px;
+    border-right: 2px solid rgb(155, 155, 155);
+    text-decoration: none;
+
+}
+
 .container {
     text-align: center;
 }
@@ -17,11 +29,11 @@ table {
     margin: 0 auto;
 }
 
-table {
-}
-
 td {
     width: 33%;
+}
+#total {
+    border-bottom: 1px solid rgb(148, 148, 148);
 }
 
 #td-1, #td-3 {
@@ -34,5 +46,51 @@ td {
 
 #over-budget {
     color: red;
+}
+
+.plus {
+    display:inline-block;
+    width:50px;
+    height:50px;
+    
+    background:
+    linear-gradient(#000,#000),
+    linear-gradient(#000,#000);
+    background-position:center;
+    background-size: 50% 2px,2px 50%; /*thickness = 2px, length = 50% (25px)*/
+    background-repeat:no-repeat;
+}
+
+.trash-button {
+    background: transparent;
+    border: none;
+}
+@media only screen  and (max-width: 800px) {
+
+    table {
+        width: 80%;
+    }
+    
+}
+
+@media only screen  and (max-width: 580px) {
+    .menu-item {
+        padding: 0 5px;
+        
+    }
+    table {
+        width: 100%;
+    }
+    
+}
+
+@media only screen and (max-width: 480px) {
+    .menu {
+        display: inline;
+    }
+    .menu-item {
+        padding: 0 ;
+        border: none;
+    }
 }
 
