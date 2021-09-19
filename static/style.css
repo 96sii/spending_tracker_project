@@ -2,13 +2,15 @@ body {
     font-family: 'Oswald', sans-serif;
 }
 
+.container {
+    text-align: center;
+}
+
 .transaction-container {
+    text-align: center;
 
 }
 
-.transactions-total {
-    
-}
 
 table {
     width: 50%;

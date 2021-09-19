@@ -6,9 +6,9 @@
         
             <table class="transaction-table">
                 {% if budget.amount > total %}
-                <h2 id="under-budget">You are £{{budget.amount - total }} within budget</h2> 
+                <h2 id="under-budget">You are £{{ "$%.2f"|format(budget.amount - total|float) }} within budget</h2> 
                 {% else %}
-                <h2 id="over-budget">You are £{{ total - budget.amount }} over your budget</h2>
+                <h2 id="over-budget">You are £{{ "$%.2f"|format(total - budget.amount|float) }} over your budget</h2>
                 {% endif %}
                 
                 <tr>

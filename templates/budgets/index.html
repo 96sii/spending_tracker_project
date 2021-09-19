@@ -3,8 +3,13 @@
     <h1>Budget</h1>
 
     {% for budget in budgets %}
-    <div class="budget">
-        <a href="/budgets/{{ budget.id }}">{{ budget.amount }}</a>
-    </div>
+        <div class="budget">
+            <a href="/budgets/{{ budget.id }}">£{{ budget.amount }}</a>
+        </div>
+        {% if budget.amount > total %}
+            <h2 id="under-budget">You have spent {{ "£%.2f"|format(total|float) }} of {{ "£%.2f"|format(budget.amount|float) }} budget</h2> 
+            {% else %}
+            <h2 id="over-budget">You are {{ "£%.2f"|format(total-budget.amount|float) }} over your budget of {{ "£%.2f"|format(budget.amount|float) }}</h2>
+        {% endif %}
     {% endfor %}
 {% endblock content %}

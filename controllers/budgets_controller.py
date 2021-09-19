@@ -17,7 +17,8 @@ budgets_blueprint = Blueprint("budgets", __name__)
 @budgets_blueprint.route("/budgets")
 def budgets():
     budgets = budget_repository.select_all()
-    return render_template("budgets/index.html", budgets=budgets)
+    total = transaction_repository.add_total()
+    return render_template("budgets/index.html", budgets=budgets, total=total)
 
 @budgets_blueprint.route("/budgets/<id>", methods=['GET'])
 def show_budget(id):
