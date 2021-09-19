@@ -44,4 +44,5 @@ def create_merchant():
 def show_merchant(id):
     merchant = merchant_repository.select(id)
     transactions = transaction_repository.select_all_from_merchant(id)
-    return render_template("merchants/show.html", merchant=merchant, transactions=transactions)
+    total= transaction_repository.add_total_for_merchant(id)
+    return render_template("merchants/show.html", merchant=merchant, transactions=transactions, total=total)

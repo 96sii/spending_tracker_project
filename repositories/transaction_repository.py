@@ -65,6 +65,43 @@ def add_total():
         
     return total
 
+def add_total_for_merchant(id):
+    transactions = []
+    total = 0
+
+    sql = "SELECT * FROM transactions INNER JOIN merchants ON transactions.merchant_id = %s WHERE merchants.id = %s"
+    values = [id, id]
+    results = run_sql(sql, values)
+ 
+
+    for row in results:
+        merchant = merchant_repository.select(row["merchant_id"])
+        transaction = Transaction(row['amount'], row['date'], merchant, row['id'])
+        transactions.append(transaction)
+
+    for transaction in transactions:
+        total += transaction.amount
+        
+    return total
+
+def add_total_for_category(id):
+    transactions = []
+    total = 0
+
+    sql = "SELECT * FROM transactions INNER JOIN merchants ON transactions.merchant_id = merchants.id INNER JOIN categories ON merchants.category_id = %s WHERE categories.id = %s"
+    values = [id, id]
+    results = run_sql(sql, values)
+
+    for row in results:
+        merchant = merchant_repository.select(row["merchant_id"])
+        transaction = Transaction(row['amount'], row['date'], merchant, row['id'])
+        transactions.append(transaction)
+
+    for transaction in transactions:
+        total += transaction.amount
+        
+    return total
+
 
 #select by id
 def select(id):

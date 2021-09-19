@@ -2,7 +2,18 @@
 {% block content %}
     <h1>{{ category.category }}</h1>
     <hr>
-    {% for transaction in transactions %}
-        {{ transaction.merchant.name }} {{ transaction.amount }} {{ transaction.date }}
+    <table> 
+        <tr>
+            <td></td>
+            <td>{{ "£%.2f"|format(total|float) }}</td>
+        </tr>
+        {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction.merchant.name }}</td>
+                <td>{{ "£%.2f"|format(transaction.amount|float) }}</td>
+                <td>{{ transaction.date }}</td>
+            </tr>
     {% endfor %}
+    </table>
+    
 {% endblock content %}

@@ -17,4 +17,5 @@ def categories():
 def show(id):
     category = category_repository.select(id)
     transactions = transaction_repository.select_all_from_category(id)
-    return render_template("/categories/show.html", category=category, transactions=transactions)
+    total = transaction_repository.add_total_for_category(id)
+    return render_template("/categories/show.html", category=category, transactions=transactions, total=total)

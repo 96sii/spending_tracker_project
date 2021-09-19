@@ -2,9 +2,11 @@
 {% block content %}
     <h1>{{ merchant.name }}</h1>
     <hr>
-    <h2>{{ merchant.category.category }}</h2>
+    <h2><a href="/categories/{{merchant.category.id}}">{{ merchant.category.category }}</a></h2>
     <table>
-        
+        <tr>
+            <td>{{ "£%.2f"|format(total|float) }}</td>
+        </tr>
             {% for transaction in transactions %}
             <tr>
                 <td>£{{ transaction.amount }}</td> 
