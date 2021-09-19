@@ -3,7 +3,7 @@
     <div class="category-content">
         {% for category in categories %}
             <div class="category-block">
-        <a href="">{{ category.category }}</a>
+        <a href="/categories/{{category.id}}">{{ category.category }}</a>
             </div>
 
         {% endfor %}

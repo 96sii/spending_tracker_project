@@ -1,5 +1,7 @@
 from db.run_sql import run_sql
 from models.category import Category
+from models.transaction import Transaction
+import repositories.merchant_repository as merchant_repository
 
 def select_all():
     categories = []
@@ -12,6 +14,8 @@ def select_all():
         categories.append(category)
     
     return categories
+
+
 
 def select(id):
     category = None

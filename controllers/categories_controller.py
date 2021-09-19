@@ -13,3 +13,8 @@ def categories():
     categories = category_repository.select_all()
     return render_template("/categories/index.html", categories=categories)
 
+@categories_blueprint.route("/categories/<id>", methods=['GET'])
+def show(id):
+    category = category_repository.select(id)
+    transactions = transaction_repository.select_all_from_category(id)
+    return render_template("/categories/show.html", category=category, transactions=transactions)
