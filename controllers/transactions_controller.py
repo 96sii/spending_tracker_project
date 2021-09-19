@@ -17,7 +17,10 @@ def transactions():
     transactions = transaction_repository.select_all()
     total = transaction_repository.add_total()
     budget = budget_repository.select(1)
-    return render_template("/transactions/index.html", transactions=transactions, total=total, budget=budget)
+    budget_percentage = budget_repository.budget_percentage(budget)
+    if budget_percentage < 0:
+        budget_percentage = 0
+    return render_template("/transactions/index.html", transactions=transactions, total=total, budget=budget, budget_percentage=budget_percentage)
 
 
 @transactions_blueprint.route("/transactions/new", methods=['GET'])

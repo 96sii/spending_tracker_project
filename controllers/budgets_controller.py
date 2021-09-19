@@ -38,3 +38,5 @@ def update_budget(id):
     budget_1 = Budget(budget_amount, id)
     budget_repository.update(budget_1)
     return redirect('/budgets')
+
+

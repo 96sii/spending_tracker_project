@@ -1,5 +1,7 @@
 body {
     font-family: 'Oswald', sans-serif;
+    padding: 0;
+    margin: 0;
 }
 
 .menu {
@@ -65,6 +67,24 @@ td {
     background: transparent;
     border: none;
 }
+
+.budget-bar {
+    width: 200px;
+    margin: 0 auto;
+    height: 1em;
+    background-color: black;
+    border-radius: 1.5em;
+    color: white;
+}
+
+.budget-fill {
+    min-width: 0%;
+    max-width: 100%;
+    height: 100%;
+    background: green;
+    border-radius: 1.5em;
+}
+
 @media only screen  and (max-width: 800px) {
 
     table {
@@ -84,7 +104,7 @@ td {
     
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 530px) {
     .menu {
         display: inline;
     }

@@ -4,6 +4,7 @@ from models.merchant import Merchant
 import repositories.merchant_repository as merchant_repository
 
 
+
 # select all function 
 def select_all():
     transactions = []
@@ -101,6 +102,7 @@ def add_total_for_category(id):
         total += transaction.amount
         
     return total
+
 
 
 #select by id

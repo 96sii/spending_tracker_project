@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>Spending history</h1>
+<div class="budget-bar">
+    <div class="budget-fill" style="width:{{budget_percentage}}%"></div> 
 
+</div>
     <div class="transaction-container">
         <div>
             <h2>Budget: {{ "£%.2f"|format(budget.amount|float)}}</h2>
@@ -11,6 +14,7 @@
                 <h3 id="over-budget">You are {{ "£%.2f"|format(total - budget.amount|float) }} over your budget</h2>
                 {% endif %}
         </div>
+
         
         <table class="transaction-table">
 

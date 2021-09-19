@@ -1,5 +1,6 @@
 from db.run_sql import run_sql
 from models.budget import Budget
+import repositories.transaction_repository as transaction_repository
 
 def select_all():
     categories = []
@@ -37,3 +38,9 @@ def update(budget):
     sql = "UPDATE budgets SET amount = %s WHERE id = %s"
     values = (budget.amount, budget.id)
     run_sql(sql, values)
+
+def budget_percentage(budget):
+    total = transaction_repository.add_total()
+    budget_left = budget.amount - total
+    budget_percentage = ((budget_left/budget.amount)*100)
+    return budget_percentage
