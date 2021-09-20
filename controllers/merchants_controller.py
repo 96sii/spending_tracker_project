@@ -30,13 +30,17 @@ def create_merchant():
     category = category_repository.select(category_id)
 
     merchants = merchant_repository.select_all()
+    merchant_match = False
     for merchant in merchants:
         if merchant_name == merchant.name:
-            return redirect("/merchants")
-        else:
-            merchant = Merchant(merchant_name, category)
-            merchant_repository.save(merchant)
-            return redirect("/merchants")
+            merchant_match = True
+            
+    if merchant_match == False:
+        merchant = Merchant(merchant_name, category)
+        merchant_repository.save(merchant)
+        return redirect("/merchants")
+    else: 
+        return redirect("/merchants")
 
 
 

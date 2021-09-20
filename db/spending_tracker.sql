@@ -44,9 +44,6 @@ INSERT INTO categories (category) VALUES ('Transport');
 
 INSERT INTO budgets (amount) VALUES (1400.00);
 
-
-
-
 INSERT INTO merchants (name, category_id) VALUES ('Tesco', 9);
 INSERT INTO merchants (name, category_id) VALUES ('Netflix', 4);
 INSERT INTO merchants (name, category_id) VALUES ('Wagamamas', 3);

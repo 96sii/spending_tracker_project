@@ -4,6 +4,7 @@ body {
     margin: 0;
 }
 
+
 .menu {
     display: flex;
     list-style: none;
@@ -13,7 +14,11 @@ body {
     padding: 0 10px;
     border-right: 2px solid rgb(155, 155, 155);
     text-decoration: none;
+}
 
+#menu {
+    position: absolute;
+    visibility: hidden;
 }
 
 .container {
@@ -22,13 +27,12 @@ body {
 
 .transaction-container {
     text-align: center;
-
 }
 
 
-table {
+table { 
     width: 50%;
-    margin: 0 auto;
+    margin: 0 auto; 
 }
 
 td {
@@ -108,9 +112,69 @@ td {
     .menu {
         display: inline;
     }
+
+    .menu li {
+        margin-top: 15px;
+    }
     .menu-item {
-        padding: 0 ;
+        padding-left: 2%;
         border: none;
     }
+    #nav {
+        display: none;
+    }
+
+    /* hamburger */
+    label,
+    label::before,
+    label::after {
+        position: absolute;
+        width: 30px;
+        height: 5px;
+        border-radius: 5px;
+        background: rgb(0, 0, 0);
+        transition: 0.6s;
+        -webkit-transition: 0.6s;
+    }
+
+    label {
+        cursor: pointer;
+        top: 2%;
+        left: 2%;
+        /* margin-left: -50px;
+        margin-top: -7.5px; */
+    }
+
+    label::before {
+        content: "";
+        transform: translateY(-10px);
+        -webkit-transform: translateY(-10px);
+    }
+
+    label::after {
+        content: "";
+        transform: translateY(10px);
+        -webkit-transform: translateY(10px);
+    }
+
+    /* animate when checked */
+    #menu:checked + label {
+        width: 0px;
+    }
+
+    #menu:checked + label::before {
+        transform: rotate(45deg) translate(0px);
+        -webkit-transform: rotate(45deg) translate(0px);
+    }
+
+    #menu:checked + label::after {
+        transform: rotate(-45deg) translate(0px);
+        -webkit-transform: rotate(-45deg) translate(0px);
+    }
+
+    #menu:checked ~ #nav {
+        display: inline;
+    }
+
 }
 

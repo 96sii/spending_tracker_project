@@ -11,15 +11,22 @@
 </head>
 <body>
     <header>
-        <nav>
-            <ul class="menu">
-                <li><a href="/transactions" class="menu-item">Spending history</a></li>
-                <li><a href="/transactions/new"class="menu-item">New transaction</a></li>
-                <li><a href="/budgets" class="menu-item">Budget</a></li>
-                <li><a href="/merchants" class="menu-item">Merchant list</a></li>
-                <li><a href="/categories" class="menu-item">Category list</a></li>
-            </ul>
-        </nav>
+        <div class="hamburger">
+            <input id="menu" type="checkbox"> 
+            <label for="menu"></label> 
+            <nav id="nav">
+                <ul class="menu">
+                    <li><a href="/transactions" class="menu-item">Spending history</a></li>
+                    <li><a href="/transactions/new"class="menu-item">New transaction</a></li>
+                    <li><a href="/budgets" class="menu-item">Budget</a></li>
+                    <li><a href="/merchants" class="menu-item">Merchant list</a></li>
+                    <li><a href="/categories" class="menu-item">Category list</a></li>
+                </ul>
+            </nav>
+        </div>
+        
+        
+            
     </header>
     <div class="container">
     {% block content %}
