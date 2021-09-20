@@ -5,7 +5,8 @@
     <table> 
         <tr>
             <td></td>
-            <td>{{ "£%.2f"|format(total|float) }}</td>
+            <td id="total">{{ "£%.2f"|format(total|float) }}</td>
+            <td></td>
         </tr>
         {% for transaction in transactions %}
             <tr>

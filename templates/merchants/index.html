@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
     {% for merchant in merchants %}
-        <a href="merchants/{{merchant.id}}">{{ merchant.name }}</a>
+        <div class="merchant-container">
+            <a href="merchants/{{merchant.id}}">{{ merchant.name }}</a>
+        <div class="merchant-container"></div>
     {% endfor %}
 
-    <h2><a href="merchants/new">Add new merchant</a></h2>
+    <h2><a href="merchants/new">Add new merchant ➡</a></h2>
 {% endblock content %}
