@@ -1,14 +1,24 @@
 html, body {
-    height: 100%;
+    min-height: 100%;
+    margin: 0 auto;
+    
 }
+
+html {
+background-image: linear-gradient(to bottom right,white, #aaa9a9a4);
+}
+
+
 body {
     font-family: 'Oswald', sans-serif;
     padding: 0;
     margin: 0;
+    
 }
 
 header {
-    height: 30px;
+    height: 40px;
+    background-color: #14233c;
 }
 
 a {
@@ -38,18 +48,19 @@ select, input {
 
 
 li a{
-    color: rgb(0, 165, 0);
+    color: rgb(255, 255, 255);
     text-decoration: none;
 }
 
 .menu {
     display: flex;
     list-style: none;
+    margin-top: 0;
+    
 }
 
 .menu-item {
     padding: 0 10px;
-    border-right: 2px solid rgb(155, 155, 155);
     text-decoration: none;
 }
 
@@ -113,7 +124,7 @@ td {
     linear-gradient(#000,#000),
     linear-gradient(#000,#000);
     background-position:center;
-    background-size: 50% 2px,2px 50%; /*thickness = 2px, length = 50% (25px)*/
+    background-size: 50% 2px,2px 50%; 
     background-repeat:no-repeat;
 }
 
@@ -155,7 +166,7 @@ td {
     table {
         width: 100%;
     }
-    
+        
 }
 
 @media only screen and (max-width: 530px) {
@@ -169,6 +180,7 @@ td {
 
     .menu li {
         margin-top: 15px;
+        margin-bottom: 5px;
     }
     .menu-item {
         padding-left: 2%;
@@ -228,6 +240,12 @@ td {
 
     #menu:checked ~ nav {
         display: inline;
+    }
+
+    #menu:checked ~ label,
+    #menu:checked ~ label::before,
+    #menu:checked ~ label::after {
+        background: rgb(255, 255, 255);
     }
 
 }

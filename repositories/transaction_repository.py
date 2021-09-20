@@ -9,7 +9,7 @@ import repositories.merchant_repository as merchant_repository
 def select_all():
     transactions = []
 
-    sql = "SELECT * FROM transactions"
+    sql = "SELECT * FROM transactions ORDER BY date DESC"
     results = run_sql(sql)
 
     for row in results:
@@ -23,7 +23,7 @@ def select_all():
 def select_all_from_merchant(id):
     transactions = []
 
-    sql = "SELECT * FROM transactions INNER JOIN merchants ON transactions.merchant_id = %s WHERE merchants.id = %s"
+    sql = "SELECT * FROM transactions INNER JOIN merchants ON transactions.merchant_id = %s WHERE merchants.id = %s ORDER BY date DESC"
     values = [id, id]
     results = run_sql(sql, values)
 
@@ -37,7 +37,7 @@ def select_all_from_merchant(id):
 def select_all_from_category(id):
     transactions = []
 
-    sql = "SELECT * FROM transactions INNER JOIN merchants ON transactions.merchant_id = merchants.id INNER JOIN categories ON merchants.category_id = %s WHERE categories.id = %s"
+    sql = "SELECT * FROM transactions INNER JOIN merchants ON transactions.merchant_id = merchants.id INNER JOIN categories ON merchants.category_id = %s WHERE categories.id = %s ORDER BY date DESC"
     values = [id, id]
     results = run_sql(sql, values)
 

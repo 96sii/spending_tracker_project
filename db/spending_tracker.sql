@@ -70,12 +70,20 @@ INSERT INTO transactions (amount, date, merchant_id) VALUES (34.50, '2021-09-12'
 
 -- SELECT * FROM budgets;
 
-SELECT transactions.amount, transactions.date, merchants.name, categories.category 
-FROM transactions 
-INNER JOIN merchants
-ON transactions.merchant_id = merchants.id
-INNER JOIN categories
-ON merchants.category_id = categories.id;
+-- SELECT transactions.amount, transactions.date, merchants.name, categories.category 
+-- FROM transactions 
+-- INNER JOIN merchants
+-- ON transactions.merchant_id = merchants.id
+-- INNER JOIN categories
+-- ON merchants.category_id = categories.id;
+
+
+
+
+
+
+
+
 
 
 
