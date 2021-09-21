@@ -47,3 +47,17 @@ def show_merchant(id):
     transactions = transaction_repository.select_all_from_merchant(id)
     total= transaction_repository.add_total_for_merchant(id)
     return render_template("merchants/show.html", merchant=merchant, transactions=transactions, total=total)
+
+
+@merchants_blueprint.route("/merchants/<id>/edit", methods=['GET'])
+def edit_merchant(id):
+    merchant = merchant_repository.select(id)
+    return render_template("/merchants/edit.html", merchant=merchant)
+
+
+@merchants_blueprint.route("/merchants/<id>", methods=['POST'])
+def update_budget(id):
+    merchant_name = request.form['merchant_name']
+    merchant = Merchant(merchant_name, id)
+    merchant_repository.update(merchant)
+    return redirect('/merchants')
