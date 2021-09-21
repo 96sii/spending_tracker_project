@@ -15,7 +15,7 @@
         </tr>
         {% for transaction in transactions %}
             <tr>
-                <td>{{ transaction.merchant.name }}</td>
+                <td><a href="/merchants/{{transaction.merchant.id}}">{{ transaction.merchant.name }}</a></td>
                 <td>{{ "£%.2f"|format(transaction.amount|float) }}</td>
                 <td>{{ transaction.date }}</td>
             </tr>

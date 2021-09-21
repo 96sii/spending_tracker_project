@@ -2,17 +2,27 @@
 {% block content %}
 <h1>Spending history</h1>
 <div class="budget-bar">
-    <div class="budget-fill" style="width:{{budget_percentage}}%"></div> 
+    {% if 0.1*budget.amount > budget.amount - total %}
+        <div id="budget-fill-10" style="width:{{budget_percentage}}%"></div>
+    {% elif 0.2*budget.amount > budget.amount - total %}
+        <div id="budget-fill-20" style="width:{{budget_percentage}}%"></div>
+    {% elif budget.amount > total %}
+        <div id="budget-fill" style="width:{{budget_percentage}}%" ></div> 
+    {% endif %}
 
 </div>
     <div class="transaction-container">
         <div>
             <h2>Budget: {{ "£%.2f"|format(budget.amount|float)}}</h2>
-        {% if budget.amount > total %}
-                <h3 id="under-budget">You are {{ "£%.2f"|format(budget.amount - total|float) }} within budget</h2> 
-                {% else %}
-                <h3 id="over-budget">You are {{ "£%.2f"|format(total - budget.amount|float) }} over your budget</h2>
-                {% endif %}
+            {% if total > budget.amount%}
+                <h3 id="over-budget">You are {{ "£%.2f"|format(total - budget.amount|float) }} over your budget</h3>
+            {% elif 0.1*budget.amount > budget.amount - total %}
+                <h3 id="close-to-over-budget-10">You are {{ "£%.2f"|format(budget.amount - total|float) }} within budget</h3>
+            {% elif 0.2*budget.amount > budget.amount - total %}
+                <h3 id="close-to-over-budget">You are {{ "£%.2f"|format(budget.amount - total|float) }} within budget</h3>
+            {% elif budget.amount > total %}
+                <h3 id="under-budget">You are {{ "£%.2f"|format(budget.amount - total|float) }} within budget</h3> 
+            {% endif %}
         </div>
 
         
@@ -25,7 +35,7 @@
                 <td></td>
             </tr>
             {% for transaction in transactions %}
-            <tr>
+            <tr>    
                     <td id="td-1"><a href="/merchants/{{ transaction.merchant.id }}">{{ transaction.merchant.name }}</a></td>
                     <td id="td-2">{{ "£%.2f"|format(transaction.amount|float) }}</td>
                     <td id="td-3"><a href="/categories/{{transaction.category.id}}">{{ transaction.category.category }}</a></td>
@@ -37,7 +47,6 @@
                     </td>
             <tr>
                 {% endfor %}
-                <td></td>
                 <td><a href="transactions/new" class="plus"></a></td>
             
         </table>
