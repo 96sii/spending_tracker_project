@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form action="/categories/{{ category.id }}" method="post">
+        <input type="text" name="category" placeholder="{{ category.category }}" autofocus>
+        <input type="submit">
+    </form>
+{% endblock content %}

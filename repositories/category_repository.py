@@ -6,7 +6,7 @@ import repositories.merchant_repository as merchant_repository
 def select_all():
     categories = []
 
-    sql = "SELECT * FROM categories"
+    sql = "SELECT * FROM categories ORDER BY category"
     results = run_sql(sql)
 
     for row in results:
@@ -34,3 +34,8 @@ def save(category):
     id = results[0]['id']
     category.id = id
     return category
+
+def update(category):
+    sql = "UPDATE categories SET category = %s WHERE id = %s"
+    values = (category.category, category.id)
+    run_sql(sql, values)

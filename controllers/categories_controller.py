@@ -40,3 +40,16 @@ def show(id):
     transactions = transaction_repository.select_all_from_category(id)
     total = transaction_repository.add_total_for_category(id)
     return render_template("/categories/show.html", category=category, transactions=transactions, total=total)
+
+@categories_blueprint.route("/categories/<id>/edit", methods=['GET'])
+def category(id):
+    category = category_repository.select(id)
+    return render_template("/categories/edit.html", category=category)
+
+
+@categories_blueprint.route("/categories/<id>", methods=['POST'])
+def update_category(id):
+    category = request.form['category']
+    category = Category(category, id)
+    category_repository.update(category)
+    return redirect('/categories')

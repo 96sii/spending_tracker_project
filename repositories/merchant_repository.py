@@ -6,7 +6,7 @@ import repositories.category_repository as category_repository
 def select_all():
     merchants = []
 
-    sql = "SELECT * FROM merchants"
+    sql = "SELECT * FROM merchants ORDER BY name"
     results = run_sql(sql)
 
     for row in results:
