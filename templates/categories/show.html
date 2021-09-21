@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="navigation">
+    <a href="/categories"><i class="fa fa-chevron-left"></i> Category list</a>
+    <br>
+    <a href="/transactions"><i class="fa fa-chevron-left"></i> Spending history</a>
+</div>
     <h1>{{ category.category }}</h1>
     <hr>
     <table> 

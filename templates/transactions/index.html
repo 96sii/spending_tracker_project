@@ -22,13 +22,15 @@
                 <td></td>
                 <td id="total">{{ "£%.2f"|format(total|float) }}</td>
                 <td></td>
+                <td></td>
             </tr>
             {% for transaction in transactions %}
             <tr>
                     <td id="td-1"><a href="/merchants/{{ transaction.merchant.id }}">{{ transaction.merchant.name }}</a></td>
                     <td id="td-2">{{ "£%.2f"|format(transaction.amount|float) }}</td>
-                    <td id="td-3">{{ transaction.date.strftime('%d-%m-%Y')}}</td>
-                    <td id ="td-4">
+                    <td id="td-3"><a href="/categories/{{transaction.category.id}}">{{ transaction.category.category }}</a></td>
+                    <td id="td-4">{{ transaction.date.strftime('%d-%m-%Y')}}</td>
+                    <td id ="td-5">
                         <form class="delete-form" action="/transactions/{{transaction.id}}/delete" method="POST">
                             <button class="trash-button"><i class="fa fa-close fa-2x" style="color:red" aria-hidden="true"></i></button>
                         </form>
