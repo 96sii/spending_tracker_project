@@ -2,6 +2,7 @@ from db.run_sql import run_sql
 from models.transaction import Transaction
 from models.merchant import Merchant
 import repositories.merchant_repository as merchant_repository
+import repositories.category_repository as category_repository
 
 
 
@@ -14,7 +15,8 @@ def select_all():
 
     for row in results:
         merchant = merchant_repository.select(row["merchant_id"])
-        transaction = Transaction(row['amount'], row['date'], merchant, row['id'])
+        category = category_repository.select(row["category_id"])
+        transaction = Transaction(row['amount'], row['date'], merchant, category, row['id'])
         transactions.append(transaction)
 
     return transactions
@@ -29,7 +31,8 @@ def select_all_from_merchant(id):
 
     for row in results:
         merchant = merchant_repository.select(id)
-        transaction = Transaction(row['amount'], row['date'], merchant, row['id'])
+        category = category_repository.select(row["category_id"])
+        transaction = Transaction(row['amount'], row['date'], merchant, category, row['id'])
         transactions.append(transaction)
 
     return transactions
@@ -37,13 +40,14 @@ def select_all_from_merchant(id):
 def select_all_from_category(id):
     transactions = []
 
-    sql = "SELECT * FROM transactions INNER JOIN merchants ON transactions.merchant_id = merchants.id INNER JOIN categories ON merchants.category_id = %s WHERE categories.id = %s ORDER BY date DESC"
+    sql = "SELECT * FROM transactions INNER JOIN merchants ON transactions.merchant_id = merchants.id INNER JOIN categories ON transactions.category_id = %s WHERE categories.id = %s ORDER BY date DESC"
     values = [id, id]
     results = run_sql(sql, values)
 
     for row in results:
         merchant = merchant_repository.select(row['merchant_id'])
-        transaction = Transaction(row['amount'], row['date'], merchant, row['id'])
+        category = category_repository.select(row['category_id'])
+        transaction = Transaction(row['amount'], row['date'], merchant, category, row['id'])
         transactions.append(transaction)
 
     return transactions
@@ -58,7 +62,8 @@ def add_total():
 
     for row in results:
         merchant = merchant_repository.select(row["merchant_id"])
-        transaction = Transaction(row['amount'], row['date'], merchant, row['id'])
+        category = category_repository.select(row['category_id'])
+        transaction = Transaction(row['amount'], row['date'], merchant, category, row['id'])
         transactions.append(transaction)
 
     for transaction in transactions:
@@ -77,7 +82,8 @@ def add_total_for_merchant(id):
 
     for row in results:
         merchant = merchant_repository.select(row["merchant_id"])
-        transaction = Transaction(row['amount'], row['date'], merchant, row['id'])
+        category = category_repository.select(row['category_id'])
+        transaction = Transaction(row['amount'], row['date'], merchant, category, row['id'])
         transactions.append(transaction)
 
     for transaction in transactions:
@@ -89,13 +95,14 @@ def add_total_for_category(id):
     transactions = []
     total = 0
 
-    sql = "SELECT * FROM transactions INNER JOIN merchants ON transactions.merchant_id = merchants.id INNER JOIN categories ON merchants.category_id = %s WHERE categories.id = %s"
+    sql = "SELECT * FROM transactions INNER JOIN merchants ON transactions.merchant_id = merchants.id INNER JOIN categories ON transactions.category_id = %s WHERE categories.id = %s"
     values = [id, id]
     results = run_sql(sql, values)
 
     for row in results:
         merchant = merchant_repository.select(row["merchant_id"])
-        transaction = Transaction(row['amount'], row['date'], merchant, row['id'])
+        category = category_repository.select(row['category_id'])
+        transaction = Transaction(row['amount'], row['date'], merchant, category, row['id'])
         transactions.append(transaction)
 
     for transaction in transactions:
@@ -114,7 +121,8 @@ def select(id):
 
     if result is not None:
         merchant = merchant_repository.select(result['merchant_id'])
-        transaction = Transaction(result['amount'], result['date'], merchant, result['id'])
+        category = category_repository.select(row['category_id'])
+        transaction = Transaction(result['amount'], result['date'], merchant, category, result['id'])
         return transaction
 
 
@@ -124,8 +132,8 @@ def delete(id):
     run_sql(sql, values)
 
 def save(transaction):
-    sql = "INSERT INTO transactions (amount, date, merchant_id) VALUES (%s, %s, %s) RETURNING *"
-    values = [transaction.amount, transaction.date, transaction.merchant.id] 
+    sql = "INSERT INTO transactions (amount, date, merchant_id, category_id) VALUES (%s, %s, %s, %s) RETURNING *"
+    values = [transaction.amount, transaction.date, transaction.merchant.id, transaction.category.id] 
     results = run_sql(sql, values)
     id = results[0]['id']
     transaction.id = id

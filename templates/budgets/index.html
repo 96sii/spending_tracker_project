@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>Budget</h1>
+    <div class="budget-bar">
+        <div class="budget-fill" style="width:{{budget_percentage}}%"></div> 
+    
+    </div>
 
     {% for budget in budgets %}
         <div class="budget">
-            <a href="/budgets/{{ budget.id }}">£{{ budget.amount }}</a>
+            <a href="/budgets/{{ budget.id }}" class="link">{{ "£%.2f"|format(budget.amount|float) }}</a>
         </div>
         {% if budget.amount > total %}
             <h2 id="under-budget">You have spent {{ "£%.2f"|format(total|float) }} of {{ "£%.2f"|format(budget.amount|float) }} budget</h2> 

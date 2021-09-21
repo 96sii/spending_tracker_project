@@ -10,8 +10,7 @@ def select_all():
     results = run_sql(sql)
 
     for row in results:
-        category = category_repository.select(row['category_id'])
-        merchant = Merchant(row['name'], category, row['id'])
+        merchant = Merchant(row['name'], row['id'])
         merchants.append(merchant)
 
     return merchants
@@ -23,13 +22,12 @@ def select(id):
     result = run_sql(sql, values)[0]
 
     if result is not None:
-        category = category_repository.select(result['category_id'])
-        merchant = Merchant(result['name'], category, result['id'])
+        merchant = Merchant(result['name'], result['id'])
         return merchant
 
 def save(merchant):
-    sql = "INSERT INTO merchants (name, category_id) VALUES (%s, %s) RETURNING *"
-    values = [merchant.name, merchant.category.id]
+    sql = "INSERT INTO merchants (name) VALUES (%s) RETURNING *"
+    values = [merchant.name]
     results = run_sql(sql, values)
     id = results[0]['id']
     merchant.id = id

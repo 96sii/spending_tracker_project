@@ -2,7 +2,6 @@
 {% block content %}
     <h1>{{ merchant.name }}</h1>
     <hr>
-    <h2><a href="/categories/{{merchant.category.id}}">{{ merchant.category.category }}</a></h2>
     <table>
         <tr>
             <td>{{ "£%.2f"|format(total|float) }}</td>
@@ -12,6 +11,8 @@
                 <td>£{{ transaction.amount }}</td> 
     
                 <td>{{ transaction.date }}</td>
+
+                <td><a href="/categories/{{transaction.category.id}}">{{transaction.category.category}}</a></td>
             </tr>
                 {% endfor %}
         

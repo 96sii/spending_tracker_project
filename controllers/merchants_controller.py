@@ -18,16 +18,13 @@ def merchants():
 
 @merchants_blueprint.route("/merchants/new", methods=['GET'])
 def new_merchant():
-    categories = category_repository.select_all()
-    return render_template("merchants/new.html", categories=categories)
+    return render_template("merchants/new.html")
 
 
 
 @merchants_blueprint.route("/merchants", methods=['POST'])
 def create_merchant():
     merchant_name = request.form['merchant_name']
-    category_id = request.form['category_id']
-    category = category_repository.select(category_id)
 
     merchants = merchant_repository.select_all()
     merchant_match = False
@@ -36,7 +33,7 @@ def create_merchant():
             merchant_match = True
             
     if merchant_match == False:
-        merchant = Merchant(merchant_name, category)
+        merchant = Merchant(merchant_name)
         merchant_repository.save(merchant)
         return redirect("/merchants")
     else: 

@@ -26,7 +26,7 @@ a {
     text-decoration: none;
 }
 
-nav a:hover {
+.link:hover {
     font-size: 1.5em;
     transition: 0.2s;
 }
@@ -63,6 +63,13 @@ li a{
     padding: 0 10px;
     text-decoration: none;
 }
+
+.menu-item:hover {
+    font-size: 1.5em;
+    transition: 0.2s;
+}
+
+
 
 #menu {
     position: absolute;
