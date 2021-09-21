@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="navigation">
+    <a href="/merchants"><i class="fa fa-chevron-left"></i> Merchant list</a>
+    <br>
+    <a href="/transactions"><i class="fa fa-chevron-left"></i> Spending history</a>
+</div>
     <h1>{{ merchant.name }}</h1>
     <hr>
     <table>
         <tr>
-            <td>{{ "£%.2f"|format(total|float) }}</td>
+            <td id="total">{{ "£%.2f"|format(total|float) }}</td>
         </tr>
             {% for transaction in transactions %}
             <tr>

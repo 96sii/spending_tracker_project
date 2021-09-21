@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="navigation">
+    <a href="/categories"><i class="fa fa-chevron-left"></i> Categories</a>
+    <br>
+    <a href="/transactions/new"><i class="fa fa-chevron-left"></i> New transaction</a>
+</div>
     <h1>Add category</h1>
     <form action="/categories" method="post">
         <input type="text" name="category_name" id='category-name' placeholder="Category Name" required autofocus>

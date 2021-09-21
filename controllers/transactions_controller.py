@@ -41,25 +41,35 @@ def add_transaction():
 
     merchants = merchant_repository.select_all()
     merchant_match = False
-    
+
     for merchant in merchants:
         if merchant_name == merchant.name:
-            print(merchant.name)
+            print (merchant.name)
             merchant_match = True
 
+        if merchant_match == True: 
+            merchant_1 = merchant
+            transaction = Transaction(amount, date, merchant_1, category)
+            transaction_repository.save(transaction)
+            return redirect("/transactions")
+
+
     if merchant_match == False:
-        merchant_1 = Merchant(merchant_name)
-        merchant_repository.save(merchant_1)
-        transaction = Transaction(amount, date, merchant_1, category)
+        print ("Merchant not found")
+        merchant_2 = Merchant(merchant_name)
+        merchant_repository.save(merchant_2)
+        transaction = Transaction(amount, date, merchant_2, category)
         transaction_repository.save(transaction)
         return redirect("/transactions")
+
+    
         
-    else:
-        print(merchant.name)
-        merchant_1 = merchant
-        transaction = Transaction(amount, date, merchant_1, category)
-        transaction_repository.save(transaction)
-        return redirect("/transactions")
+    # else:
+    #     print(merchant.name)
+    #     merchant_1 = merchant
+    #     transaction = Transaction(amount, date, merchant_1, category)
+    #     transaction_repository.save(transaction)
+    #     return redirect("/transactions")
 
 
 @transactions_blueprint.route("/transactions/<id>/delete", methods=["POST"])

@@ -44,15 +44,6 @@ INSERT INTO categories (category) VALUES ('Transport');
 
 INSERT INTO budgets (amount) VALUES (1400.00);
 
-INSERT INTO merchants (name) VALUES ('Tesco');
-INSERT INTO merchants (name) VALUES ('Netflix');
-INSERT INTO merchants (name) VALUES ('Wagamamas');
-
-INSERT INTO transactions (amount, date, merchant_id, category_id) VALUES (5.50, '2021-09-14', 1, 9);
-INSERT INTO transactions (amount, date, merchant_id, category_id) VALUES (7.50, '2021-09-14', 1, 9);
-INSERT INTO transactions (amount, date, merchant_id, category_id) VALUES (14.99, '2021-09-13', 2, 4);
-INSERT INTO transactions (amount, date, merchant_id, category_id) VALUES (34.50, '2021-09-12', 3, 3);
-
 
 SELECT * FROM merchants;
 SELECT * FROM categories;

@@ -1,22 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="navigation">
+    <a href="/transactions"><i class="fa fa-chevron-left"></i></a>
+</div>
 <h1>New transaction</h1>
-
 <form class="new" action="/transactions" method="post">
     <div>
         <input type="text" id="merchant-input" name="merchant_name" placeholder="Merchant name" required autofocus>
-        <datalist id="merchants">
-            {% for merchant in merchants %}
-                <option value="{{ merchant.id }}">{{ merchant.name }}</option>
-            {% endfor %}
-        </datalist>
-            <select name="category_id" id="">
-                {% for category in categories %}
-                    <option value="{{ category.id }}">{{ category.category }}</option>    
-                {% endfor %}
-            </select>
     </div>  
-    
+    <div>
+        <select name="category_id" id="">
+            {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.category }}</option>    
+            {% endfor %}
+        </select>
+    </div>
+    <div id="new-category">
+        <a href="/categories/new">Add new category</a>
+    </div>
+
     <div>
         <input type="float" id="amount-input" name="amount" placeholder="£" step=".01" required >
     </div>
