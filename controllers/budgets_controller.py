@@ -22,7 +22,7 @@ def budgets():
     budget_percentage = budget_repository.budget_percentage(budget)
     if budget_percentage < 0:
         budget_percentage = 0
-    return render_template("budgets/index.html", budgets=budgets, total=total, budget_percentage=budget_percentage)
+    return render_template("budgets/index.html", budgets=budgets, budget=budget, total=total, budget_percentage=budget_percentage)
 
 @budgets_blueprint.route("/budgets/<id>", methods=['GET'])
 def show_budget(id):

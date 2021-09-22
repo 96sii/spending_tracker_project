@@ -2,18 +2,27 @@
 {% block content %}
     <h1>Budget</h1>
     <div class="budget-bar">
-        <div class="budget-fill" style="width:{{budget_percentage}}%"></div> 
-    
+        {% if 0.1*budget.amount > budget.amount - total %}
+            <div id="budget-fill-10" style="width:{{budget_percentage}}%"></div>
+        {% elif 0.2*budget.amount > budget.amount - total %}
+            <div id="budget-fill-20" style="width:{{budget_percentage}}%"></div>
+        {% elif budget.amount > total %}
+            <div id="budget-fill" style="width:{{budget_percentage}}%" ></div> 
+        {% endif %}
     </div>
 
     {% for budget in budgets %}
         <div class="budget">
             <a href="/budgets/{{ budget.id }}" class="link">{{ "£%.2f"|format(budget.amount|float) }}</a>
         </div>
-        {% if budget.amount > total %}
-            <h2 id="under-budget">You have spent {{ "£%.2f"|format(total|float) }} of {{ "£%.2f"|format(budget.amount|float) }} budget</h2> 
-            {% else %}
-            <h2 id="over-budget">You are {{ "£%.2f"|format(total-budget.amount|float) }} over your budget of {{ "£%.2f"|format(budget.amount|float) }}</h2>
-        {% endif %}
+        {% if total > budget.amount%}
+                <h3 id="over-budget">You are {{ "£%.2f"|format(total - budget.amount|float) }} over your budget</h3>
+            {% elif 0.1*budget.amount > budget.amount - total %}
+                <h3 id="close-to-over-budget-10">You are {{ "£%.2f"|format(budget.amount - total|float) }} within budget</h3>
+            {% elif 0.2*budget.amount > budget.amount - total %}
+                <h3 id="close-to-over-budget">You are {{ "£%.2f"|format(budget.amount - total|float) }} within budget</h3>
+            {% elif budget.amount > total %}
+                <h3 id="under-budget">You are {{ "£%.2f"|format(budget.amount - total|float) }} within budget</h3> 
+            {% endif %}
     {% endfor %}
 {% endblock content %}

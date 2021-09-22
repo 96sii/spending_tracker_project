@@ -9,8 +9,8 @@
     {% elif budget.amount > total %}
         <div id="budget-fill" style="width:{{budget_percentage}}%" ></div> 
     {% endif %}
-
 </div>
+
     <div class="transaction-container">
         <div>
             <h2>Budget: {{ "£%.2f"|format(budget.amount|float)}}</h2>
