@@ -12,10 +12,5 @@ The budget bar is programmed to change to orange when you are below 20% of your 
 ## Technologies used
 
 
-    python
-    FLASK
-    POSTGRESQL
-    psycopg2
-    HTML/CSS
-    jinja
+    python  FLASK   POSTGRESQL  psycopg2    HTML/CSS    jinja
 
