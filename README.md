@@ -29,6 +29,7 @@ Enter the following commands into your terminal
     pip install Jinja2
 
 Clone the repository to your own directory:
+
     git clone git@github.com:96sii/spending_tracker_project.git
 
 From the cloned repository, run flask by entering the following command in the terminal. (Make sure you are in the project directory): 
