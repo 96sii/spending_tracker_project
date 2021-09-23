@@ -31,10 +31,18 @@ Enter the following commands into your terminal
 Clone the repository to your own directory:
 
     git clone git@github.com:96sii/spending_tracker_project.git
+    
+Create spending tracker database by entering the following command in the console: 
+    
+    createdb spending_tracker
+    
+From the cloned repository, run sql file to populate database:
+
+    psql -d spending_tracker -f db/spending_tracker.sql
 
 From the cloned repository, run flask by entering the following command in the terminal. (Make sure you are in the project directory): 
 
-    FLASK RUN
+    flask run
 
 Open a browser and enter http://localhost:5000/
 
