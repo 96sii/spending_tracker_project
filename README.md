@@ -34,7 +34,7 @@ Clone the repository to your own directory:
 
 From the cloned repository, run flask by entering the following command in the terminal. (Make sure you are in the project directory): 
 
-    FLASK RUN
+    flask run
 
 Open a browser and enter http://localhost:5000/
 
