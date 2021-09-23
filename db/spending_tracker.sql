@@ -45,30 +45,6 @@ INSERT INTO categories (category) VALUES ('Transport');
 INSERT INTO budgets (amount) VALUES (1400.00);
 
 
-SELECT * FROM merchants;
-SELECT * FROM categories;
-SELECT * FROM transactions;
-
--- SELECT *
--- FROM transactions
--- INNER JOIN merchants
--- ON transactions.merchant_id = merchants.id
--- WHERE merchants.id = 1;
-
--- SELECT *
--- FROM transactions
--- WHERE transactions.date = '2021-09-14';
-
--- SELECT * FROM budgets;
-
-SELECT transactions.amount, transactions.date, merchants.name, categories.category 
-FROM transactions 
-INNER JOIN merchants
-ON transactions.merchant_id = merchants.id
-INNER JOIN categories
-ON transactions.category_id = categories.id;
-
-
 
 
 

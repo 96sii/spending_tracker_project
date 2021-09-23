@@ -51,7 +51,7 @@ def add_transaction():
             merchant_1 = merchant
             transaction = Transaction(amount, date, merchant_1, category)
             transaction_repository.save(transaction)
-            return redirect("/transactions")
+
 
 
     if merchant_match == False:
@@ -60,7 +60,8 @@ def add_transaction():
         merchant_repository.save(merchant_2)
         transaction = Transaction(amount, date, merchant_2, category)
         transaction_repository.save(transaction)
-        return redirect("/transactions")
+        
+    return redirect ('/transactions')
 
 
 @transactions_blueprint.route("/transactions/<id>/delete", methods=["POST"])
