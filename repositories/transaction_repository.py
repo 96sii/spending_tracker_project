@@ -22,6 +22,7 @@ def select_all():
     return transactions
 
 # select all by merchant
+
 def select_all_from_merchant(id):
     transactions = []
 
@@ -47,6 +48,22 @@ def select_all_from_category(id):
     for row in results:
         merchant = merchant_repository.select(row['merchant_id'])
         category = category_repository.select(row['category_id'])
+        transaction = Transaction(row['amount'], row['date'], merchant, category, row['id'])
+        transactions.append(transaction)
+
+    return transactions
+
+
+def select_all_from_date(date):
+    transactions = []
+
+    sql = "SELECT * FROM transactions INNER JOIN merchants ON transactions.merchant_id = merchants.id INNER JOIN categories ON transactions.category_id = categories.id WHERE date = %s"
+    values = [date]
+    results = run_sql(sql, values)
+
+    for row in results:
+        merchant = merchant_repository.select(row["merchant_id"])
+        category = category_repository.select(row["category_id"])
         transaction = Transaction(row['amount'], row['date'], merchant, category, row['id'])
         transactions.append(transaction)
 
@@ -111,6 +128,26 @@ def add_total_for_category(id):
     return total
 
 
+def add_total_for_date(date):
+    transactions = []
+    total = 0
+
+    sql = "SELECT * FROM transactions INNER JOIN merchants ON transactions.merchant_id = merchants.id INNER JOIN categories ON transactions.category_id = categories.id WHERE date = %s"
+    values = [date]
+    results = run_sql(sql, values)
+
+    for row in results:
+        merchant = merchant_repository.select(row["merchant_id"])
+        category = category_repository.select(row['category_id'])
+        transaction = Transaction(row['amount'], row['date'], merchant, category, row['id'])
+        transactions.append(transaction)
+
+    for transaction in transactions:
+        total += transaction.amount
+        
+    return total
+
+
 
 #select by id
 def select(id):
@@ -121,7 +158,7 @@ def select(id):
 
     if result is not None:
         merchant = merchant_repository.select(result['merchant_id'])
-        category = category_repository.select(row['category_id'])
+        category = category_repository.select(result['category_id'])
         transaction = Transaction(result['amount'], result['date'], merchant, category, result['id'])
         return transaction
 

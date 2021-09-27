@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect
 from flask import Blueprint
 from models.merchant import Merchant
 from models.transaction import Transaction
+import datetime
 import repositories.transaction_repository as transaction_repository
 import repositories.merchant_repository as merchant_repository
 import repositories.category_repository as category_repository
@@ -51,6 +52,7 @@ def add_transaction():
             merchant_1 = merchant
             transaction = Transaction(amount, date, merchant_1, category)
             transaction_repository.save(transaction)
+            return redirect ('/transactions')
 
 
 
@@ -60,11 +62,18 @@ def add_transaction():
         merchant_repository.save(merchant_2)
         transaction = Transaction(amount, date, merchant_2, category)
         transaction_repository.save(transaction)
-        
-    return redirect ('/transactions')
+        return redirect ('/transactions')
+
 
 
 @transactions_blueprint.route("/transactions/<id>/delete", methods=["POST"])
 def delete(id):
     transaction_repository.delete(id)   
     return redirect("/transactions")
+
+@transactions_blueprint.route("/transactions/<date>", methods=['GET'])
+def show_date(date):
+    date_1 = date
+    total = transaction_repository.add_total_for_date(date)
+    transactions = transaction_repository.select_all_from_date(date)
+    return render_template("/transactions/date.html", total=total, transactions=transactions, date_1=date_1)
