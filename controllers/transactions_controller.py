@@ -35,6 +35,7 @@ def new_transaction():
 @transactions_blueprint.route("/transactions", methods=['POST'])
 def add_transaction():
     merchant_name = request.form['merchant_name']
+    logo = request.form['logo']
     category_id = request.form['category_id']
     amount = request.form['amount']
     date = request.form['date']
@@ -58,7 +59,7 @@ def add_transaction():
 
     if merchant_match == False:
         print ("Merchant not found")
-        merchant_2 = Merchant(merchant_name)
+        merchant_2 = Merchant(merchant_name, logo)
         merchant_repository.save(merchant_2)
         transaction = Transaction(amount, date, merchant_2, category)
         transaction_repository.save(transaction)

@@ -16,7 +16,8 @@ CREATE TABLE budgets (
 
 CREATE TABLE merchants (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
+    name VARCHAR(255) NOT NULL,
+    logo VARCHAR(255)
 );
 
 CREATE TABLE transactions (
@@ -27,7 +28,7 @@ CREATE TABLE transactions (
     category_id INT references categories(id)
 );
 
-INSERT INTO merchants (name) VALUES ('Tesco');
+INSERT INTO merchants (name, logo) VALUES ('Tesco', 'https://cdn.iconscout.com/icon/free/png-256/tesco-282827.png');
 
 INSERT INTO categories (category) VALUES ('Bills');
 INSERT INTO categories (category) VALUES ('Charity');
@@ -50,13 +51,7 @@ INSERT INTO transactions (amount, date, merchant_id, category_id) VALUES (500, '
 
 INSERT INTO budgets (amount) VALUES (1400.00);
 
-SELECT *
-FROM merchants 
-INNER JOIN transactions
-ON merchants.id = transactions.merchant_id
-INNER JOIN categories 
-ON transactions.category_id = categories.id
-WHERE date ='2021-10-10';
+
 
 
 

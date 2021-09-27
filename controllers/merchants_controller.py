@@ -25,6 +25,7 @@ def new_merchant():
 @merchants_blueprint.route("/merchants", methods=['POST'])
 def create_merchant():
     merchant_name = request.form['merchant_name']
+    logo = request.form['logo']
 
     merchants = merchant_repository.select_all()
     merchant_match = False
@@ -33,7 +34,7 @@ def create_merchant():
             merchant_match = True
             
     if merchant_match == False:
-        merchant = Merchant(merchant_name)
+        merchant = Merchant(merchant_name, logo)
         merchant_repository.save(merchant)
         return redirect("/merchants")
     else: 

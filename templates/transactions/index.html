@@ -36,6 +36,7 @@
             </tr>
             {% for transaction in transactions %}
             <tr>    
+                    <td><img class="merchant-logo" src="{{transaction.merchant.logo}}" onerror="this.onerror=null;this.src='https://childcare.admin.ox.ac.uk/sites/default/files/childcare/images/media/pound-sign-icon_big.png';"></td>
                     <td id="td-1"><a href="/merchants/{{ transaction.merchant.id }}">{{ transaction.merchant.name }}</a></td>
                     <td id="td-2">{{ "£%.2f"|format(transaction.amount|float) }}</td>
                     <td id="td-3"><a href="/categories/{{transaction.category.id}}">{{ transaction.category.category }}</a></td>
